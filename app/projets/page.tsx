@@ -27,7 +27,7 @@ const projets = [
 ];
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   return (
   <>
