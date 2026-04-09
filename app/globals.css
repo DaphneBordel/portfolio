@@ -14,7 +14,9 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -23,4 +25,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.dark-theme {
+  background-color: #1B2430;
+  color: #F1F1F1;
 }

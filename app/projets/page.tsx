@@ -9,104 +9,118 @@ const projets = [
   {
     id: 1,
     title: "Carnet de santé numérique animalier",
-    description: "Application mobile React Native dédiée au suivi de la santé des animaux : gestion des soins en cours, rappels de rendez-vous, suivi de l’évolution du poids et historique des traitements et soins. Une fonctionnalité de scan d’ordonnance vétérinaire permet de pré- remplir automatiquement les informations, simplifiant ainsi la saisie pour l’utilisateur.",
+    description:
+      "Application mobile React Native dédiée au suivi de la santé des animaux : gestion des soins en cours, rappels de rendez-vous, suivi de l’évolution du poids et historique des traitements et soins. Une fonctionnalité de scan d’ordonnance vétérinaire permet de pré-remplir automatiquement les informations.",
     tech: ["React native"],
-    code: ['/sam-code-nest.png', '/sam-code-react.png'],
-    imageBefore: '/appli_3.png',
-    demo: ['/appli_1.png', '/appli_2.png', '/appli_3.png', '/app_mobile_video.mp4'],
+    code: ["/sam-code-nest.png", "/sam-code-react.png"],
+    imageBefore: "/appli_3.png",
+    demo: ["/appli_1.png", "/appli_2.png", "/appli_3.png", "/app_mobile_video.mp4"],
   },
   {
     id: 2,
-    title: "Site de refonte de la mairie de Pontgouin (Eure et Loir)",
-    description: "Refonte front-end d’un site de mairie, visant à moderniser l’interface et améliorer l’expérience utilisateur.",
+    title: "Site de refonte de la mairie de Pontgouin",
+    description:
+      "Refonte front-end d’un site de mairie, visant à moderniser l’interface et améliorer l’expérience utilisateur.",
     tech: ["React.js"],
-    code: ['/mairie-code-actualites.png'],
-    imageBefore:'/mairie-pontgouin-apres.png',
-    demo: ["/mairie-pontgouin-avant.png","/mairie-pontgouin-apres.png"],
-  }
+    code: ["/mairie-code-actualites.png"],
+    imageBefore: "/mairie-pontgouin-apres.png",
+    demo: ["/mairie-pontgouin-avant.png", "/mairie-pontgouin-apres.png"],
+  },
 ];
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
   return (
-  <>
-    <Navbar />
-    <div className="max-w-6xl mx-auto px-6 py-16">
+    <>
+      <Navbar />
 
-      <h1 className="text-4xl font-bold mb-12 mt-10 text-center">
-        Mes projets
-      </h1>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
 
-      {/* GRID PROJETS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projets.map((projet, i) => (
-          <motion.div
-            key={i}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
-            whileHover={{ scale: 1.03 }}
-            onClick={() => setSelectedProject(projet)}
-          >
+          {/* TITLE */}
+          <h1 className="text-2xl sm:text-4xl font-bold mb-8 sm:mb-12 mt-10 text-center text-gray-900 dark:text-gray-100">
+            Mes projets
+          </h1>
 
-            {/* IMAGE */}
-            <div className="relative max-h-100 overflow-hidden">
-              <img src={projet.imageBefore} alt={`Image du projet ${projet.id}`} />
+          {/* GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            {projets.map((projet, i) => (
+              <motion.div
+                key={i}
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm hover:shadow-xl overflow-hidden cursor-pointer group transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                onClick={() => setSelectedProject(projet)}
+              >
+                {/* IMAGE */}
+                <div className="relative h-48 sm:h-56 overflow-hidden">
+                  <img
+                    src={projet.imageBefore}
+                    alt={`Image du projet ${projet.id}`}
+                    className="w-full object-top group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition" />
+                </div>
 
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition" />
-            </div>
+                {/* CONTENT */}
+                <div className="p-4">
+                  <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {projet.title}
+                  </h2>
 
-            {/* CONTENU */}
-            <div className="p-4">
-              <h2 className="text-lg font-semibold">
-                {projet.title}
-              </h2>
-              {/* BADGE TECHNO */}
-              <div className="flex gap-2 mt-2">
-                {projet.tech.slice(0, 2).map((t, i) => (
-                  <span key={i} className="text-xs bg-gray-200 px-2 py-1 rounded">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <p className="text-sm text-gray-600 mt-2">
-                {projet.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+                  {/* TECH */}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {projet.tech.slice(0, 2).map((t, i) => (
+                      <span
+                        key={i}
+                        className="text-xs bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              className="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* bouton fermer */}
-              <button
-                className="absolute top-4 right-6 text-2xl"
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 line-clamp-3">
+                    {projet.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* MODAL */}
+          <AnimatePresence>
+            {selectedProject && (
+              <motion.div
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setSelectedProject(null)}
               >
-                ✕
-              </button>
+                <motion.div
+                  className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 shadow-xl"
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* CLOSE BUTTON */}
+                  <button
+                    className="absolute top-3 right-4 text-xl text-gray-700 dark:text-gray-300 hover:scale-110 transition"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    ✕
+                  </button>
 
-              <DetailsProject projet={selectedProject} />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  </>
+                  <DetailsProject projet={selectedProject} />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </div>
+      </div>
+    </>
   );
 }

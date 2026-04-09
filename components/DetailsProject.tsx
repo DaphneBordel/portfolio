@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 interface Projet {
@@ -12,99 +12,100 @@ interface Projet {
 }
 
 export default function DetailsProject({ projet }: { projet: Projet }) {
-  console.log("projet", projet);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <div className="max-w-12xl mx-auto px-6 py-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
 
       {/* HERO */}
       <motion.div
-        className="mb-12"
+        className="mb-10 sm:mb-12"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100">
           {projet.title}
         </h1>
 
-        {/* Tech badges */}
-        <div className="flex flex-wrap mb-6">
+        {/* TECH */}
+        <div className="flex flex-wrap gap-2 mb-6">
           {projet.tech?.map((tech, i) => (
             <span
               key={i}
-              className="px-3 py-1 bg-indigo-100 text-indigo-600 text-sm rounded-full"
+              className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 text-xs sm:text-sm rounded-full"
             >
               {tech}
             </span>
           ))}
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 p-15'>
+
+        {/* MEDIA */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {projet.demo?.map((el, i) => {
-            const extension = el.split('.')[1];
-            console.log('extension', extension);
-            if (extension === 'png') {
+            const extension = el.split(".").pop();
+
+            if (extension === "png" || extension === "jpg" || extension === "jpeg") {
               return (
                 <motion.img
                   key={i}
                   src={el}
-                  alt={`Image n°${i} du projet ${projet.title}`}
-                  className="w-full object-cover rounded-2xl shadow-lg cursor-pointer"
-                  whileHover={{ scale: 1.03 }}
+                  alt={`Image ${i} du projet ${projet.title}`}
+                  className="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md cursor-pointer hover:shadow-xl transition"
+                  whileHover={{ scale: 1.02 }}
                   onClick={() => setSelectedImage(el)}
                 />
-              )
-            } else if (extension === 'mp4') {
-              console.log("ici", el);
+              );
+            }
+
+            if (extension === "mp4") {
               return (
                 <motion.video
+                  key={i}
                   controls
                   preload="none"
-                  className="object-cover rounded-2xl shadow-lg cursor-pointer"
-                  height={500} width={'auto'}
+                  className="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md"
                 >
                   <source src={el} type="video/mp4" />
-                  <track
-                    src="/path/to/captions.vtt"
-
-                    kind="subtitles"
-                    srcLang="en"
-                    label="English"
-                  />
                   Your browser does not support the video tag.
                 </motion.video>
-              )
+              );
             }
+
+            return null;
           })}
         </div>
       </motion.div>
 
       {/* DESCRIPTION */}
       <motion.div
-        className="mb-12 max-w-3xl"
+        className="mb-10 sm:mb-12 max-w-3xl"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        <h2 className="text-2xl font-semibold mb-4">Description</h2>
-        <p className="text-gray-600 leading-relaxed">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+          Description
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
           {projet.description}
         </p>
       </motion.div>
 
-      {/* CODE / CAPTURES */}
+      {/* CODE */}
       {projet.code?.length > 0 && (
         <motion.div
-          className="mb-12"
+          className="mb-10 sm:mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
         >
-          <h2 className="text-2xl font-semibold mb-6">Extraits de code</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+            Extraits de code
+          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {projet.code.map((img, i) => (
               <motion.div
                 key={i}
-                className="overflow-hidden rounded-xl bg-gray-900 p-2 shadow-lg"
+                className="overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-2 shadow-md hover:shadow-xl transition"
                 whileHover={{ scale: 1.02 }}
               >
                 <img
@@ -118,37 +119,38 @@ export default function DetailsProject({ projet }: { projet: Projet }) {
           </div>
         </motion.div>
       )}
-      {selectedImage && (
-        <motion.div
-          className="fixed inset-0 bg-black/90 z-50 overflow-y-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="min-h-screen flex items-start justify-center p-6">
 
+      {/* MODAL IMAGE */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
             <motion.img
               src={selectedImage}
               alt="Zoom"
-              className="w-auto h-auto max-w-[75%] rounded-xl shadow-2xl"
+              className="max-w-full max-h-[85vh] rounded-xl shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             />
 
-            {/* bouton fermer */}
+            {/* CLOSE */}
             <button
-              className="fixed top-6 right-6 text-white text-3xl z-50"
+              className="absolute top-4 right-4 text-white text-2xl sm:text-3xl"
               onClick={() => setSelectedImage(null)}
             >
               ✕
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 }
