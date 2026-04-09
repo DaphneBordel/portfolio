@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className="flex flex-col overflow-hidden bg-gray-100 dark:bg-gray-900 min-h-screen">
+      <body className="flex flex-col overflow-x-hidden bg-gray-100 dark:bg-gray-900 min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

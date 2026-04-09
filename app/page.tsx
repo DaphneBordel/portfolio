@@ -24,16 +24,16 @@ const projectsPreview = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen pb-20 bg-gray-100 dark:bg-gray-900 transition-colors">
+    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors">
       <Navbar />
 
-      <main className="flex-1 mb-20 px-4 sm:px-6 py-10 sm:py-16 mt-10 space-y-10">
+      <main className="flex-1 px-4 sm:px-6 py-10 sm:py-16 mt-10 space-y-10">
 
         {/* HERO + SKILLS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* HERO */}
-          <div className="relative rounded-2xl p-6 sm:p-8 text-white overflow-hidden 
+          <div className="relative rounded-2xl p-6 sm:p-8 text-white overflow-x-hidden 
           bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
           dark:from-indigo-700 dark:via-purple-700 dark:to-pink-700">
 
@@ -119,7 +119,7 @@ export default function Home() {
 
         {/* PROJETS */}
         <div>
-          <h2 className="text-gray-500 dark:text-gray-400 italic mb-4">
+          <h2 className="text-gray-500 dark:text-gray-400 mb-1 italic">
             Projets professionnels
           </h2>
 

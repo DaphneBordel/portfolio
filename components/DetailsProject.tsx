@@ -41,6 +41,9 @@ export default function DetailsProject({ projet }: { projet: Projet }) {
 
         {/* MEDIA */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            Captures d'écran
+          </h2>
           {projet.demo?.map((el, i) => {
             const extension = el.split(".").pop();
 
@@ -50,7 +53,7 @@ export default function DetailsProject({ projet }: { projet: Projet }) {
                   key={i}
                   src={el}
                   alt={`Image ${i} du projet ${projet.title}`}
-                  className="w-full h-48 sm:h-64 object-cover rounded-xl shadow-md cursor-pointer hover:shadow-xl transition"
+                  className="h-full sm:h-64 object-cover rounded-xl shadow-md cursor-pointer hover:shadow-xl transition"
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setSelectedImage(el)}
                 />
@@ -105,7 +108,7 @@ export default function DetailsProject({ projet }: { projet: Projet }) {
             {projet.code.map((img, i) => (
               <motion.div
                 key={i}
-                className="overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-2 shadow-md hover:shadow-xl transition"
+                className="rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-2 shadow-md hover:shadow-xl transition"
                 whileHover={{ scale: 1.02 }}
               >
                 <img
@@ -133,7 +136,7 @@ export default function DetailsProject({ projet }: { projet: Projet }) {
             <motion.img
               src={selectedImage}
               alt="Zoom"
-              className="max-w-full max-h-[85vh] rounded-xl shadow-2xl"
+              className="max-h-full rounded-xl shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
