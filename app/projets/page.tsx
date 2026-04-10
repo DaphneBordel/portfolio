@@ -12,9 +12,10 @@ const projets = [
     description:
       "Application mobile React Native dédiée au suivi de la santé des animaux : gestion des soins en cours, rappels de rendez-vous, suivi de l’évolution du poids et historique des traitements et soins. Une fonctionnalité de scan d’ordonnance vétérinaire permet de pré-remplir automatiquement les informations.",
     tech: ["React native"],
-    code: ["/sam-code-nest.png", "/sam-code-react.png"],
+    code: ["/code-carnet-ui-2.jpg", "/code-carnet-ui-1.jpg", "/code-carnet-back-1.jpg", "/code-carnet-back-2.jpg"],
     imageBefore: "/appli_3.png",
     demo: ["/appli_1.png", "/appli_2.png", "/appli_3.png", "/app_mobile_video.mp4"],
+    url: ["https://github.com/DaphneBordel/carnet-sante-animaux-numerique-ui", "https://github.com/DaphneBordel/carnet-sante-animaux-numerique-back"]
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const projets = [
     code: ["/mairie-code-actualites.png"],
     imageBefore: "/mairie-pontgouin-apres.png",
     demo: ["/mairie-pontgouin-avant.png", "/mairie-pontgouin-apres.png"],
+    url: ["https://github.com/DaphneBordel/refonte-mairie-pontgouin"]
   },
 ];
 
