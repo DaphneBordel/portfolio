@@ -32,13 +32,13 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <a href="https://github.com/tonpseudo" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/DaphneBordel" target="_blank" rel="noopener noreferrer">
             <FaGithub className="hover:text-white transition" />
           </a>
-          <a href="https://www.linkedin.com/in/tonpseudo" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/daphn%C3%A9-bordel-93871758/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="hover:text-blue-500 transition" />
           </a>
-          <a href="mailto:tonemail@example.com">
+          <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} target="_blank" rel="noopener noreferrer">
             <FaEnvelope className="hover:text-red-500 transition" />
           </a>
         </motion.div>

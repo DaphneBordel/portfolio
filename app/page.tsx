@@ -16,10 +16,10 @@ const skills = [
 ];
 
 const projectsPreview = [
-  { title: "Reporting commercial", description: "création d'un outil modulable...", tech: ["React.js"], image: "" },
-  { title: "Outil de vente marketing mobile", description: "développement de composants mobiles...", tech: ["React Native"], image: "" },
-  { title: "Outil de gestion et de suivi", description: "suivi d'interventions techniciens...", tech: ["React.js"], image: "" },
-  { title: "Application mobile client", description: "outil pour informer et prévenir...", tech: ["React Native"], image: "" }
+  { title: "Reporting commercial", description: "Création d'un outil modulable : affichage des données en fonction d'un type de graphique choisi", tech: ["React.js"], image: "" },
+  { title: "Outil de vente marketing mobile", description: "Développement de composants mobiles (galerie modulable, cartographie par géolocalisation, notifications push)", tech: ["React Native"], image: "" },
+  { title: "Outil de gestion et de suivi", description: "Suivi d'interventions techniciens: géolocalisation en temps réel, mise à jour du status de l'intervention, assignation des agents", tech: ["React.js"], image: "" },
+  { title: "Application mobile client", description: "Outil pour informer et prévenir (notifications push, géolocalisation de structures, affichage d'informations).", tech: ["React Native"], image: "" }
 ];
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* HERO */}
-          <div className="relative rounded-2xl p-6 sm:p-8 text-white overflow-x-hidden 
+          <div className="relative rounded-2xl p-6 sm:p-8 text-white overflow-hidden 
           bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
           dark:from-indigo-700 dark:via-purple-700 dark:to-pink-700">
 
@@ -76,7 +76,7 @@ export default function Home() {
             {/* IMAGE */}
             <img
               src="/moi2.png"
-              className="hidden sm:block absolute bottom-0 right-4 w-28 sm:w-36 md:w-40"
+              className="sm:block absolute top-5 right-4 w-20 sm:w-15 md:w-40"
             />
           </div>
 
