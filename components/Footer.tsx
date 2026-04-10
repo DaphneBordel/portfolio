@@ -17,7 +17,7 @@ export default function Footer() {
           <h3 className="text-2xl font-bold mb-2">Travaillons ensemble !</h3>
           <p className="mb-4">Contactez-moi pour vos projets web ou mobiles.</p>
           <a
-            href="mailto:tonemail@example.com"
+            href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
             className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
           >
             Envoyer un message
